@@ -1,0 +1,24 @@
+Para executar a aplicação, você precisa ter o Docker instalado no seu sistema. Depois de garantir que o Docker está instalado e em execução, siga estas etapas para executar a aplicação:
+
+Clone o repositório:
+Se você ainda não fez isso, clone o repositório que contém os arquivos da aplicação em sua máquina local.
+
+Navegue até o diretório do projeto:
+Abra um terminal ou prompt de comando e navegue até o diretório onde você clonou o repositório.
+
+Construa as imagens dos contêineres:
+Execute o comando docker-compose build para construir as imagens dos contêineres conforme definido no arquivo docker-compose.yml.
+
+Inicie os serviços:
+Após a construção das imagens, execute o comando docker-compose up para iniciar todos os serviços definidos no arquivo docker-compose.yml. Adicione a opção -d se você quiser iniciar os serviços em segundo plano.
+
+Acesse o produtor:
+O produtor estará acessível em http://localhost:5000. Você pode enviar requisições POST para http://localhost:5000/message para produzir mensagens na fila Kafka.
+
+Visualize as mensagens no consumidor:
+O consumidor estará imprimindo as mensagens recebidas no console. Você pode visualizar as mensagens no terminal ou prompt de comando onde você iniciou o serviço do consumidor.
+
+Para encerrar a aplicação:
+Quando você terminar de usar a aplicação, pressione Ctrl + C no terminal onde você iniciou o docker-compose up para encerrar os serviços. Se você iniciou os serviços em segundo plano com -d, você pode usar o comando docker-compose down para encerrar os serviços.
+
+Com esses passos, você deve conseguir executar a aplicação com sucesso. Certifique-se de que todas as dependências estejam instaladas corretamente e que os serviços do Docker estejam em execução antes de iniciar a aplicação.
