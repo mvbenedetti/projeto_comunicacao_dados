@@ -1,3 +1,5 @@
+CORDENADAS PARA EXECUTAR A APLICAÇÃO_
+
 Para executar a aplicação, você precisa ter o Docker instalado no seu sistema. Depois de garantir que o Docker está instalado e em execução, siga estas etapas para executar a aplicação:
 
 Clone o repositório:
@@ -23,7 +25,7 @@ Quando você terminar de usar a aplicação, pressione Ctrl + C no terminal onde
 
 Com esses passos, você deve conseguir executar a aplicação com sucesso. Certifique-se de que todas as dependências estejam instaladas corretamente e que os serviços do Docker estejam em execução antes de iniciar a aplicação.
 
-Funcionamento da aplicação_
+FUNCIONAMENTO DA APLICAÇÃO_
 
 Esta aplicação consiste em um sistema de produtor e consumidor, onde o produtor recebe requisições REST, envia mensagens para um tópico no Kafka, e o consumidor consome essas mensagens do tópico. Aqui está uma visão geral do funcionamento:
 
