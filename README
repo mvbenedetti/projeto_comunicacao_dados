@@ -22,3 +22,35 @@ Para encerrar a aplicação:
 Quando você terminar de usar a aplicação, pressione Ctrl + C no terminal onde você iniciou o docker-compose up para encerrar os serviços. Se você iniciou os serviços em segundo plano com -d, você pode usar o comando docker-compose down para encerrar os serviços.
 
 Com esses passos, você deve conseguir executar a aplicação com sucesso. Certifique-se de que todas as dependências estejam instaladas corretamente e que os serviços do Docker estejam em execução antes de iniciar a aplicação.
+
+Funcionamento da aplicação_
+
+Esta aplicação consiste em um sistema de produtor e consumidor, onde o produtor recebe requisições REST, envia mensagens para um tópico no Kafka, e o consumidor consome essas mensagens do tópico. Aqui está uma visão geral do funcionamento:
+
+Produtor:
+Recebe Requisições REST: O produtor é um servidor web Flask que expõe um endpoint REST em /message. Ele espera receber requisições POST com dados no formato JSON.
+
+Envia Mensagens para o Kafka: Quando uma requisição é recebida no endpoint /message, o produtor extrai os dados do JSON recebido e os envia para um tópico no Kafka usando a biblioteca kafka-python.
+
+Comunica-se com o Kafka: O produtor se conecta ao serviço Kafka definido no Docker Compose usando o nome do serviço (kafka) como endereço do broker Kafka.
+
+Consumidor:
+Subscreve ao Tópico Kafka: O consumidor utiliza a biblioteca kafkajs para se conectar ao tópico Kafka definido no Docker Compose e se inscrever para receber mensagens.
+
+Processa Mensagens Recebidas: Quando uma mensagem é recebida do tópico Kafka, o consumidor processa a mensagem conforme necessário. No exemplo, estamos apenas imprimindo as mensagens recebidas no console, mas na prática você poderia realizar qualquer tipo de processamento desejado.
+
+Comunica-se com o Kafka: O consumidor se conecta ao serviço Kafka definido no Docker Compose usando o nome do serviço (kafka) como endereço do broker Kafka.
+
+Docker Compose:
+Definição dos Serviços: O arquivo docker-compose.yml define todos os serviços necessários para a aplicação, incluindo o Kafka, o Zookeeper (necessário para o Kafka), o produtor e o consumidor.
+
+Configuração do Kafka: O serviço Kafka é configurado com os detalhes necessários, como listeners, ports, e variáveis de ambiente.
+
+Integração com os Serviços: Os serviços do produtor e do consumidor dependem do serviço do Kafka, garantindo que o Kafka esteja disponível antes que os serviços do produtor e do consumidor sejam iniciados.
+
+Fluxo de Execução:
+O Docker Compose é iniciado, o que resulta na inicialização dos serviços Kafka, Zookeeper, produtor e consumidor.
+O produtor fica disponível para receber requisições REST.
+Quando uma requisição é feita para /message, o produtor envia a mensagem para o tópico Kafka.
+O consumidor está constantemente escutando o tópico Kafka para novas mensagens.
+Quando uma mensagem é publicada no tópico Kafka, o consumidor a recebe e a processa conforme necessário.
